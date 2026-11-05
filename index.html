@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أذكار المسلم</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Tahoma, Arial, sans-serif;
+    background: #f4f7f2;
+    color: #243b31;
+    transition: 0.3s;
+}
+
+header {
+    background: linear-gradient(135deg,#164b38,#267453);
+    color: white;
+    text-align: center;
+    padding: 35px 15px;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 32px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 18px;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 16px;
+    background: #267453;
+    color: white;
+    transition: 0.2s;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 15px;
+}
+
+.section-title {
+    text-align: center;
+    color: #267453;
+    margin: 25px 0;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 12px #0000000d;
+}
+
+.card p {
+    font-size: 20px;
+    line-height: 2;
+}
+
+.counter {
+    color: #267453;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.counter button {
+    margin: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #648071;
+}
+
+.dark {
+    background: #17251f;
+    color: #e8f2eb;
+}
+
+.dark .card {
+    background: #263a30;
+    color: white;
+}
+
+.dark .section-title {
+    color: #8dd3a8;
+}
+
+.dark footer {
+    color: #b4c9bb;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🌿 أذكار المسلم 🌿</h1>
+    <p>اذكر الله يطمئن قلبك</p>
+    <button onclick="toggleDark()">🌙 الوضع الليلي</button>
+</header>
+
+<nav>
+    <button onclick="showSection('morning')">🌅 أذكار الصباح</button>
+    <button onclick="showSection('evening')">🌙 أذكار المساء</button>
+    <button onclick="showSection('daily')">📿 الذكر اليومي</button>
+</nav>
+
+<main class="container">
+
+<section id="morning">
+<h2 class="section-title">🌅 أذكار الصباح</h2>
+<div id="morning-list"></div>
+</section>
+
+<section id="evening" class="hidden">
+<h2 class="section-title">🌙 أذكار المساء</h2>
+<div id="evening-list"></div>
+</section>
+
+<section id="daily" class="hidden">
+<h2 class="section-title">📿 الذكر اليومي</h2>
+<div id="daily-list"></div>
+</section>
+
+</main>
+
+<footer>
+    <p>اللهم اجعل ألسنتنا عامرة بذكرك ❤️</p>
+    <p>موقع أذكار المسلم</p>
+    <P>Eng: Ali mahrt</P>
+</footer>
+
+<script>
+
+const morning = [
+{
+text: "أصبحنا وأصبح الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",
+count: 1
+},
+{
+text: "اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور.",
+count: 1
+},
+{
+text: "رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا.",
+count: 3
+},
+{
+text: "اللهم إني أصبحت أشهدك وأشهد حملة عرشك وملائكتك وجميع خلقك أنك أنت الله لا إله إلا أنت وحدك لا شريك لك وأن محمدًا عبدك ورسولك.",
+count: 4
+},
+{
+text: "حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم.",
+count: 7
+},
+{
+text: "بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم.",
+count: 3
+},
+{
+text: "سبحان الله وبحمده.",
+count: 100
+},
+{
+text: "اللهم صل وسلم على نبينا محمد.",
+count: 10
+},
+{
+text: "أستغفر الله وأتوب إليه.",
+count: 100
+}
+];
+
+const evening = [
+{
+text: "أمسينا وأمسى الملك لله، والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",
+count: 1
+},
+{
+text: "اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير.",
+count: 1
+},
+{
+text: "رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد ﷺ نبيًا.",
+count: 3
+},
+{
+text: "بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم.",
+count: 3
+},
+{
+text: "حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم.",
+count: 7
+},
+{
+text: "سبحان الله وبحمده.",
+count: 100
+},
+{
+text: "أستغفر الله وأتوب إليه.",
+count: 100
+},
+{
+text: "اللهم صل وسلم على نبينا محمد.",
+count: 10
+}
+];
+
+const daily = [
+{
+text: "سبحان الله.",
+count: 33
+},
+{
+text: "الحمد لله.",
+count: 33
+},
+{
+text: "الله أكبر.",
+count: 34
+},
+{
+text: "لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.",
+count: 100
+},
+{
+text: "أستغفر الله العظيم وأتوب إليه.",
+count: 100
+},
+{
+text: "لا حول ولا قوة إلا بالله.",
+count: 100
+},
+{
+text: "سبحان الله وبحمده، سبحان الله العظيم.",
+count: 100
+}
+];
+
+function createCards(data, elementId) {
+
+    const container = document.getElementById(elementId);
+
+    data.forEach((item, index) => {
+
+        let current = 0;
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const text = document.createElement("p");
+        text.textContent = item.text;
+
+        const counter = document.createElement("div");
+        counter.className = "counter";
+        counter.textContent = "عدد التكرار: " + current + " / " + item.count;
+
+        const button = document.createElement("button");
+        button.textContent = "📿 اضغط للتسبيح";
+
+        button.onclick = function() {
+            if (current < item.count) {
+                current++;
+                counter.textContent =
+                "عدد التكرار: " + current + " / " + item.count;
+
+                if (current === item.count) {
+                    button.textContent = "✅ اكتمل الذكر";
+                    button.disabled = true;
+                }
+            }
+        };
+
+        const reset = document.createElement("button");
+        reset.textContent = "إعادة العداد";
+
+        reset.onclick = function() {
+            current = 0;
+            counter.textContent =
+            "عدد التكرار: 0 / " + item.count;
+            button.textContent = "📿 اضغط للتسبيح";
+            button.disabled = false;
+        };
+
+        card.appendChild(text);
+        card.appendChild(counter);
+        card.appendChild(button);
+        card.appendChild(reset);
+
+        container.appendChild(card);
+    });
+}
+
+createCards(morning, "morning-list");
+createCards(evening, "evening-list");
+createCards(daily, "daily-list");
+
+function showSection(id) {
+    document.querySelectorAll("main section").forEach(section => {
+        section.classList.add("hidden");
+    });
+
+    document.getElementById(id).classList.remove("hidden");
+}
+
+function toggleDark() {
+    document.body.classList.toggle("dark");
+}
+
+</script>
+
+</body>
+</html>
