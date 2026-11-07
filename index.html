@@ -3,85 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أذكار المسلم</title>
+<meta name="theme-color" content="#103c30">
+<title>أذكار المسلم | اذكر الله</title>
 
 <style>
 * {
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: Tahoma, Arial, sans-serif;
-    background: #f4f7f2;
-    color: #243b31;
-    transition: 0.3s;
+    background: transparent;
+    color: #263b30;
+    min-height: 100vh;
+    position: relative;
+    isolation: isolate;
 }
 
+/* خلفية المسجد */
+.mosque-background {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 20%, #286d50 0%, transparent 65%),
+        linear-gradient(145deg, #092c24, #164b38 55%, #09251e);
+}
+
+.mosque-background::before {
+    content: "✦      ✧          ✦       ✧       ✦";
+    position: absolute;
+    top: 12%;
+    width: 100%;
+    text-align: center;
+    color: #f1d58d;
+    font-size: 22px;
+    letter-spacing: 28px;
+    opacity: .7;
+}
+
+.mosque-background svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 65%;
+    min-height: 300px;
+}
+
+.mosque-background .building {
+    fill: #071e19;
+}
+
+.mosque-background .gold {
+    fill: #c9a65c;
+}
+
+.mosque-background .window {
+    fill: #e4c779;
+    opacity: .8;
+}
+
+/* الزخارف */
+.pattern {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: .09;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent 0 35px,
+        #e6cb8d 36px,
+        transparent 37px 70px
+    );
+}
+
+/* إظهار المحتوى فوق الخلفية */
+header, nav, main, footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* الهيدر */
 header {
-    background: linear-gradient(135deg,#164b38,#267453);
+    background: linear-gradient(135deg,
+        rgba(7, 40, 30, .96),
+        rgba(25, 94, 63, .94));
     color: white;
     text-align: center;
-    padding: 35px 15px;
+    padding: 42px 15px;
+    border-bottom: 3px solid #c9a65c;
+    box-shadow: 0 5px 25px #0005;
 }
 
 header h1 {
-    margin: 0 0 10px;
-    font-size: 32px;
+    margin: 0 0 12px;
+    font-size: 36px;
+    color: #f2d58c;
+    text-shadow: 0 3px 12px #0008;
 }
 
+header p {
+    font-size: 18px;
+    color: #f4ead2;
+}
+
+header .moon {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+/* الأزرار */
+button {
+    border: 1px solid #d3b36d;
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 15px;
+    font-family: inherit;
+    background: linear-gradient(135deg, #267453, #164b38);
+    color: white;
+    transition: .25s;
+    margin: 4px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    background: #b48a3d;
+    color: white;
+}
+
+button:disabled {
+    background: #778d7d;
+    cursor: default;
+    transform: none;
+}
+
+.theme-button {
+    background: #b48a3d;
+    color: white;
+    margin-top: 12px;
+}
+
+/* القائمة */
 nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    padding: 18px;
+    padding: 20px 10px;
 }
 
-button {
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    padding: 12px 18px;
-    font-size: 16px;
-    background: #267453;
-    color: white;
-    transition: 0.2s;
+nav button {
+    min-width: 145px;
+    font-weight: bold;
 }
 
-button:hover {
-    opacity: 0.85;
-}
-
+/* المحتوى */
 .container {
-    max-width: 850px;
+    max-width: 900px;
     margin: auto;
     padding: 15px;
 }
 
 .section-title {
     text-align: center;
-    color: #267453;
-    margin: 25px 0;
+    color: #f1d58d;
+    font-size: 27px;
+    margin: 30px 0;
+    text-shadow: 0 2px 8px #0008;
 }
 
+/* بطاقات الأذكار */
 .card {
-    background: white;
-    padding: 22px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 3px 12px #0000000d;
+    background: rgba(255, 255, 255, .95);
+    padding: 23px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    border: 1px solid rgba(218, 186, 111, .75);
+    box-shadow: 0 8px 25px #0003;
+    backdrop-filter: blur(8px);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px #0004;
 }
 
 .card p {
-    font-size: 20px;
-    line-height: 2;
+    font-size: 21px;
+    line-height: 2.1;
+    color: #234535;
+    margin-top: 0;
 }
 
 .counter {
     color: #267453;
     font-weight: bold;
-    margin: 12px 0;
+    margin: 15px 0;
+    font-size: 17px;
 }
 
 .counter button {
@@ -92,69 +220,195 @@ button:hover {
     display: none;
 }
 
+/* الفوتر */
 footer {
     text-align: center;
-    padding: 25px;
-    color: #648071;
+    padding: 30px 15px;
+    margin-top: 30px;
+    background: rgba(5, 35, 27, .9);
+    color: #f1d58d;
+    border-top: 2px solid #c9a65c;
 }
 
+footer p {
+    line-height: 1.8;
+}
+
+/* الوضع الليلي */
 .dark {
-    background: #17251f;
+    background: #071c17;
     color: #e8f2eb;
 }
 
+.dark .mosque-background {
+    background:
+        radial-gradient(ellipse at 50% 20%, #153c32, transparent 70%),
+        linear-gradient(145deg, #030e0b, #102a21);
+}
+
 .dark .card {
-    background: #263a30;
-    color: white;
+    background: rgba(25, 48, 39, .96);
+    border-color: #9f8248;
+}
+
+.dark .card p {
+    color: #f0eee5;
+}
+
+.dark .counter {
+    color: #e5c578;
 }
 
 .dark .section-title {
-    color: #8dd3a8;
+    color: #f1d58d;
 }
 
-.dark footer {
-    color: #b4c9bb;
+/* الموبايل */
+@media (max-width: 600px) {
+    header {
+        padding: 30px 12px;
+    }
+
+    header h1 {
+        font-size: 27px;
+    }
+
+    nav {
+        gap: 5px;
+    }
+
+    nav button {
+        min-width: 125px;
+        padding: 11px 9px;
+        font-size: 14px;
+    }
+
+    .card {
+        padding: 17px;
+    }
+
+    .card p {
+        font-size: 18px;
+        line-height: 2;
+    }
+
+    .section-title {
+        font-size: 23px;
+    }
+
+    .mosque-background svg {
+        height: 45%;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- خلفية المسجد -->
+<div class="mosque-background" aria-hidden="true">
+<svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMax slice">
+
+    <g class="building">
+
+        <!-- المئذنة اليسرى -->
+        <path d="M90 500 V145 H130 V500Z"/>
+        <path d="M80 145 L110 75 L140 145Z"/>
+        <path d="M85 205 H135 V220 H85Z"/>
+        <path d="M90 280 H130 V295 H90Z"/>
+
+        <!-- المئذنة اليمنى -->
+        <path d="M980 500 V145 H1020 V500Z"/>
+        <path d="M970 145 L1000 75 L1030 145Z"/>
+        <path d="M975 205 H1025 V220 H975Z"/>
+        <path d="M980 280 H1020 V295 H980Z"/>
+
+        <!-- المبنى الرئيسي -->
+        <path d="M250 500 V300 H950 V500Z"/>
+
+        <!-- القبة الرئيسية -->
+        <path d="M380 300 Q600 10 820 300Z"/>
+
+        <!-- القباب الجانبية -->
+        <path d="M210 300 Q300 170 390 300Z"/>
+        <path d="M810 300 Q900 170 990 300Z"/>
+
+        <!-- الأبواب -->
+        <path d="M535 500 V380 Q600 295 665 380 V500Z"/>
+        <path d="M310 500 V410 Q350 360 390 410 V500Z"/>
+        <path d="M810 500 V410 Q850 360 890 410 V500Z"/>
+
+        <!-- قاعدة المسجد -->
+        <path d="M170 485 H1030 V500 H170Z"/>
+
+    </g>
+
+    <g class="gold">
+        <path d="M600 15 L600 0 L610 15 L600 30 L590 15Z"/>
+        <circle cx="110" cy="75" r="5"/>
+        <circle cx="1000" cy="75" r="5"/>
+    </g>
+
+    <g class="window">
+        <path d="M440 350 V325 Q460 295 480 325 V350Z"/>
+        <path d="M720 350 V325 Q740 295 760 325 V350Z"/>
+        <path d="M440 420 V395 Q460 365 480 395 V420Z"/>
+        <path d="M720 420 V395 Q740 365 760 395 V420Z"/>
+    </g>
+
+</svg>
+</div>
+
+<div class="pattern"></div>
+
 <header>
+    <div class="moon">🌙 🕌</div>
     <h1>🌿 أذكار المسلم 🌿</h1>
-    <p>اذكر الله يطمئن قلبك</p>
-    <button onclick="toggleDark()">🌙 الوضع الليلي</button>
+    <p>ألا بذكر الله تطمئن القلوب</p>
+
+    <button class="theme-button" onclick="toggleDark()">
+        🌙 الوضع الليلي
+    </button>
 </header>
 
 <nav>
-    <button onclick="showSection('morning')">🌅 أذكار الصباح</button>
-    <button onclick="showSection('evening')">🌙 أذكار المساء</button>
-    <button onclick="showSection('daily')">📿 الذكر اليومي</button>
+    <button onclick="showSection('morning')">
+        🌅 أذكار الصباح
+    </button>
+
+    <button onclick="showSection('evening')">
+        🌙 أذكار المساء
+    </button>
+
+    <button onclick="showSection('daily')">
+        📿 الذكر اليومي
+    </button>
 </nav>
 
 <main class="container">
 
 <section id="morning">
-<h2 class="section-title">🌅 أذكار الصباح</h2>
-<div id="morning-list"></div>
+    <h2 class="section-title">🌅 أذكار الصباح</h2>
+    <div id="morning-list"></div>
 </section>
 
 <section id="evening" class="hidden">
-<h2 class="section-title">🌙 أذكار المساء</h2>
-<div id="evening-list"></div>
+    <h2 class="section-title">🌙 أذكار المساء</h2>
+    <div id="evening-list"></div>
 </section>
 
 <section id="daily" class="hidden">
-<h2 class="section-title">📿 الذكر اليومي</h2>
-<div id="daily-list"></div>
+    <h2 class="section-title">📿 الذكر اليومي</h2>
+    <div id="daily-list"></div>
 </section>
 
 </main>
 
 <footer>
     <p>اللهم اجعل ألسنتنا عامرة بذكرك ❤️</p>
-    <p>موقع أذكار المسلم</p>
-    <P>Eng: Ali mahrt</P>
+    <p>🕌 موقع أذكار المسلم 🕌</p>
+    <p>نسأل الله القبول والإخلاص</p>
+    <p>Eng:Ali Mahre</p>
 </footer>
 
 <script>
@@ -268,7 +522,7 @@ function createCards(data, elementId) {
 
     const container = document.getElementById(elementId);
 
-    data.forEach((item, index) => {
+    data.forEach((item) => {
 
         let current = 0;
 
@@ -280,16 +534,23 @@ function createCards(data, elementId) {
 
         const counter = document.createElement("div");
         counter.className = "counter";
-        counter.textContent = "عدد التكرار: " + current + " / " + item.count;
+
+        function updateCounter() {
+            counter.textContent =
+                "عدد التكرار: " + current + " / " + item.count;
+        }
+
+        updateCounter();
 
         const button = document.createElement("button");
         button.textContent = "📿 اضغط للتسبيح";
 
         button.onclick = function() {
+
             if (current < item.count) {
+
                 current++;
-                counter.textContent =
-                "عدد التكرار: " + current + " / " + item.count;
+                updateCounter();
 
                 if (current === item.count) {
                     button.textContent = "✅ اكتمل الذكر";
@@ -299,12 +560,13 @@ function createCards(data, elementId) {
         };
 
         const reset = document.createElement("button");
-        reset.textContent = "إعادة العداد";
+        reset.textContent = "🔄 إعادة العداد";
 
         reset.onclick = function() {
+
             current = 0;
-            counter.textContent =
-            "عدد التكرار: 0 / " + item.count;
+            updateCounter();
+
             button.textContent = "📿 اضغط للتسبيح";
             button.disabled = false;
         };
@@ -323,15 +585,30 @@ createCards(evening, "evening-list");
 createCards(daily, "daily-list");
 
 function showSection(id) {
+
     document.querySelectorAll("main section").forEach(section => {
         section.classList.add("hidden");
     });
 
     document.getElementById(id).classList.remove("hidden");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 }
 
 function toggleDark() {
+
     document.body.classList.toggle("dark");
+
+    const button = document.querySelector(".theme-button");
+
+    if (document.body.classList.contains("dark")) {
+        button.textContent = "☀️ الوضع النهاري";
+    } else {
+        button.textContent = "🌙 الوضع الليلي";
+    }
 }
 
 </script>
