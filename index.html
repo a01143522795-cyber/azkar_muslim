@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <link rel="manifest" href="manifest.json">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#103c30">
@@ -611,6 +612,15 @@ function toggleDark() {
     }
 }
 
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(() => console.log("تم تشغيل التطبيق بنجاح"))
+      .catch(error => console.log("حدث خطأ:", error));
+  });
+}
 </script>
 
 </body>
